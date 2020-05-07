@@ -96,16 +96,28 @@ const movies = {
     name: 'Get Out',
   },
 };
-
+class UsersList extends React.Component {
+  render() {
+    const profiles = this.props.profiles
+    const movies = this.props.movies
+    const users = this.props.users
+    return (
+      <ol>
+        {profiles.map((profile) => (
+          <li key={profile.id}>
+           {`${users[profile.userID].name}'s favorite movie is ${movies[profile.favoriteMovieID].name}`}
+          </li>
+        ))}
+      </ol>
+    );
+  }
+}
 class App extends Component {
   render() {
     return (
-      <div>
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">ReactND - Coding Practice</h1>
-        </header>
-        <h2>Favorite Movies</h2>
+      <div className="App">
+        <UsersList profiles={profiles} users = {users} movies={movies} />
+
       </div>
     );
   }
